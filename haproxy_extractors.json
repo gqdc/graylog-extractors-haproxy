@@ -1,0 +1,295 @@
+{
+  "extractors": [
+    {
+      "title": "IP address of the client",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "haproxy_client_ip",
+      "extractor_config": {
+        "regex_value": "haproxy(?:\\[\\d+\\])?:\\s+(\\S+):"
+      },
+      "condition_type": "regex",
+      "condition_value": "haproxy(?:\\[\\d+\\])?:"
+    },
+    {
+      "title": "Exact date when the first byte of the HTTP request was received",
+      "extractor_type": "regex",
+      "converters": [
+        {
+          "type": "date",
+          "config": {
+            "date_format": "dd/MMM/YYYY:HH:mm:ss.SSS",
+            "time_zone": "Etc/UTC",
+            "locale": "en-US"
+          }
+        }
+      ],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "haproxy_request_date",
+      "extractor_config": {
+        "regex_value": "haproxy(?:\\[\\d+\\])?:.+?\\[(.+?)\\]"
+      },
+      "condition_type": "regex",
+      "condition_value": "haproxy(?:\\[\\d+\\])?:"
+    },
+    {
+      "title": "Name of the frontend (or listener) which received and processed the connection",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "haproxy_frontend_name",
+      "extractor_config": {
+        "regex_value": "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\]\\s(\\S+)"
+      },
+      "condition_type": "regex",
+      "condition_value": "haproxy(?:\\[\\d+\\])?:"
+    },
+    {
+      "title": "Name of the backend (or listener) which was selected to manage the connection to the server",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "haproxy_backend_name",
+      "extractor_config": {
+        "regex_value": "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\].+?(\\S+)/"
+      },
+      "condition_type": "regex",
+      "condition_value": "haproxy(?:\\[\\d+\\])?:"
+    },
+    {
+      "title": "Name of the last server to which the connection was sent",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "haproxy_server_name",
+      "extractor_config": {
+        "regex_value": "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\].+?/(\\S+)"
+      },
+      "condition_type": "regex",
+      "condition_value": "haproxy(?:\\[\\d+\\])?:"
+    },
+    {
+      "title": "Timings",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "haproxy_times",
+      "extractor_config": {
+        "regex_value": "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\].+?\\S+/\\S+\\s(\\S+)"
+      },
+      "condition_type": "regex",
+      "condition_value": "haproxy(?:\\[\\d+\\])?:"
+    },
+    {
+      "title": "HTTP status code returned to the client",
+      "extractor_type": "regex",
+      "converters": [
+        {
+          "type": "numeric",
+          "config": {}
+        }
+      ],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "haproxy_status_code",
+      "extractor_config": {
+        "regex_value": "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\].+?\\s\\S+\\s\\S+\\s(\\d+)"
+      },
+      "condition_type": "regex",
+      "condition_value": "haproxy(?:\\[\\d+\\])?:"
+    },
+    {
+      "title": "Total number of bytes transmitted to the client when the log is emitted",
+      "extractor_type": "regex",
+      "converters": [
+        {
+          "type": "numeric",
+          "config": {}
+        }
+      ],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "haproxy_bytes_read",
+      "extractor_config": {
+        "regex_value": "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\].+?\\s\\S+\\s\\S+\\s\\d+\\s(\\d+)"
+      },
+      "condition_type": "regex",
+      "condition_value": "haproxy(?:\\[\\d+\\])?:"
+    },
+    {
+      "title": "Complete HTTP request line, including the method, request and HTTP version string",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "haproxy_http_request",
+      "extractor_config": {
+        "regex_value": "haproxy(?:\\[\\d+\\])?:.+?\"(.*)\""
+      },
+      "condition_type": "regex",
+      "condition_value": "haproxy(?:\\[\\d+\\])?:"
+    },
+    {
+      "title": "HTTP method",
+      "extractor_type": "split_and_index",
+      "converters": [],
+      "order": 1,
+      "cursor_strategy": "copy",
+      "source_field": "haproxy_http_request",
+      "target_field": "haproxy_http_method",
+      "extractor_config": {
+        "index": 1,
+        "split_by": " "
+      },
+      "condition_type": "string",
+      "condition_value": " "
+    },
+    {
+      "title": "HTTP request path",
+      "extractor_type": "split_and_index",
+      "converters": [],
+      "order": 1,
+      "cursor_strategy": "copy",
+      "source_field": "haproxy_http_request",
+      "target_field": "haproxy_http_path",
+      "extractor_config": {
+        "index": 2,
+        "split_by": " "
+      },
+      "condition_type": "string",
+      "condition_value": " "
+    },
+    {
+      "title": "HTTP version",
+      "extractor_type": "split_and_index",
+      "converters": [],
+      "order": 1,
+      "cursor_strategy": "copy",
+      "source_field": "haproxy_http_request",
+      "target_field": "haproxy_http_version",
+      "extractor_config": {
+        "index": 3,
+        "split_by": " "
+      },
+      "condition_type": "string",
+      "condition_value": " "
+    },
+    {
+      "title": "Total time in milliseconds spent waiting for a full HTTP request from the client (not counting body) after the first byte was received",
+      "extractor_type": "split_and_index",
+      "converters": [
+        {
+          "type": "numeric",
+          "config": {}
+        }
+      ],
+      "order": 2,
+      "cursor_strategy": "copy",
+      "source_field": "haproxy_timings",
+      "target_field": "haproxy_tr",
+      "extractor_config": {
+        "index": 1,
+        "split_by": "/"
+      },
+      "condition_type": "string",
+      "condition_value": "/"
+    },
+    {
+      "title": "Total time in milliseconds spent waiting in the various queues",
+      "extractor_type": "split_and_index",
+      "converters": [
+        {
+          "type": "numeric",
+          "config": {}
+        }
+      ],
+      "order": 2,
+      "cursor_strategy": "copy",
+      "source_field": "haproxy_timings",
+      "target_field": "haproxy_tw",
+      "extractor_config": {
+        "index": 2,
+        "split_by": "/"
+      },
+      "condition_type": "string",
+      "condition_value": "/"
+    },
+    {
+      "title": "Total time in milliseconds spent waiting for the connection to establish to the final server, including retries",
+      "extractor_type": "split_and_index",
+      "converters": [
+        {
+          "type": "numeric",
+          "config": {}
+        }
+      ],
+      "order": 2,
+      "cursor_strategy": "copy",
+      "source_field": "haproxy_timings",
+      "target_field": "haproxy_tc",
+      "extractor_config": {
+        "index": 3,
+        "split_by": "/"
+      },
+      "condition_type": "string",
+      "condition_value": "/"
+    },
+    {
+      "title": "Total time in milliseconds spent waiting for the server to send a full HTTP response, not counting data",
+      "extractor_type": "split_and_index",
+      "converters": [
+        {
+          "type": "numeric",
+          "config": {}
+        }
+      ],
+      "order": 2,
+      "cursor_strategy": "copy",
+      "source_field": "haproxy_timings",
+      "target_field": "haproxy_tr",
+      "extractor_config": {
+        "index": 4,
+        "split_by": "/"
+      },
+      "condition_type": "string",
+      "condition_value": "/"
+    },
+    {
+      "title": "Time the request remained active in haproxy, which is the total time in milliseconds elapsed between the first byte of the request was received and the last byte of response was sent",
+      "extractor_type": "split_and_index",
+      "converters": [
+        {
+          "type": "numeric",
+          "config": {}
+        }
+      ],
+      "order": 2,
+      "cursor_strategy": "copy",
+      "source_field": "haproxy_timings",
+      "target_field": "haproxy_ta",
+      "extractor_config": {
+        "index": 5,
+        "split_by": "/"
+      },
+      "condition_type": "string",
+      "condition_value": "/"
+    }
+  ],
+  "version": "3.1.1"
+}
