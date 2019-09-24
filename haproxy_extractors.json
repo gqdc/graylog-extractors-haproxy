@@ -32,7 +32,7 @@
       "source_field": "message",
       "target_field": "haproxy_request_date",
       "extractor_config": {
-        "regex_value": "haproxy(?:\\[\\d+\\])?:.+?\\[(\\d+\\/\\w+\\/\\d+:\\d+:\\d+:\\d+\\.\\d+)\\]"
+        "regex_value": "haproxy(?:\\[\\d+\\])?:.*\\[(\\d+\\/\\w+\\/\\d+:\\d+:\\d+:\\d+\\.\\d+)\\]"
       },
       "condition_type": "regex",
       "condition_value": "haproxy(?:\\[\\d+\\])?:"
@@ -46,7 +46,7 @@
       "source_field": "message",
       "target_field": "haproxy_frontend_name",
       "extractor_config": {
-        "regex_value": "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\]\\s(\\S+)"
+        "regex_value": "haproxy(?:\\[\\d+\\])?:.*\\[.+?\\]\\s(\\S+)"
       },
       "condition_type": "regex",
       "condition_value": "haproxy(?:\\[\\d+\\])?:"
@@ -60,7 +60,7 @@
       "source_field": "message",
       "target_field": "haproxy_backend_name",
       "extractor_config": {
-        "regex_value": "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\].+?(\\S+)/"
+        "regex_value": "haproxy(?:\\[\\d+\\])?:.*\\[.+?\\].+?(\\S+)/"
       },
       "condition_type": "regex",
       "condition_value": "haproxy(?:\\[\\d+\\])?:"
@@ -74,7 +74,7 @@
       "source_field": "message",
       "target_field": "haproxy_server_name",
       "extractor_config": {
-        "regex_value": "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\].+?/(\\S+)"
+        "regex_value": "haproxy(?:\\[\\d+\\])?:.*\\[.+?\\].+?/(\\S+)"
       },
       "condition_type": "regex",
       "condition_value": "haproxy(?:\\[\\d+\\])?:"
@@ -88,7 +88,7 @@
       "source_field": "message",
       "target_field": "haproxy_times",
       "extractor_config": {
-        "regex_value": "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\].+?\\S+/\\S+\\s(\\S+)"
+        "regex_value": "haproxy(?:\\[\\d+\\])?:.*\\[.+?\\].+?\\S+/\\S+\\s(\\S+)"
       },
       "condition_type": "regex",
       "condition_value": "haproxy(?:\\[\\d+\\])?:"
@@ -107,7 +107,7 @@
       "source_field": "message",
       "target_field": "haproxy_status_code",
       "extractor_config": {
-        "regex_value": "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\].+?\\s\\S+\\s\\S+\\s(\\d+)"
+        "regex_value": "haproxy(?:\\[\\d+\\])?:.*\\[.+?\\].+?\\s\\S+\\s\\S+\\s(\\d+)"
       },
       "condition_type": "regex",
       "condition_value": "haproxy(?:\\[\\d+\\])?:"
@@ -126,7 +126,7 @@
       "source_field": "message",
       "target_field": "haproxy_bytes_read",
       "extractor_config": {
-        "regex_value": "haproxy(?:\\[\\d+\\])?:.+?\\[.+?\\].+?\\s\\S+\\s\\S+\\s\\d+\\s(\\d+)"
+        "regex_value": "haproxy(?:\\[\\d+\\])?:.*\\[.+?\\].+?\\s\\S+\\s\\S+\\s\\d+\\s(\\d+)"
       },
       "condition_type": "regex",
       "condition_value": "haproxy(?:\\[\\d+\\])?:"
@@ -140,7 +140,7 @@
       "source_field": "message",
       "target_field": "haproxy_http_request",
       "extractor_config": {
-        "regex_value": "haproxy(?:\\[\\d+\\])?:.+?\"(.*)\""
+        "regex_value": "haproxy(?:\\[\\d+\\])?:.*\"(.*)\""
       },
       "condition_type": "regex",
       "condition_value": "haproxy(?:\\[\\d+\\])?:"
