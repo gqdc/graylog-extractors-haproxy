@@ -191,7 +191,7 @@
       "condition_value": " "
     },
     {
-      "title": "Total time in milliseconds spent waiting for a full HTTP request from the client (not counting body) after the first byte was received",
+      "title": "Total time in milliseconds spent waiting for a full HTTP request from the client (not counting body) after the first byte was received (TR)",
       "extractor_type": "split_and_index",
       "converters": [
         {
@@ -202,7 +202,7 @@
       "order": 2,
       "cursor_strategy": "copy",
       "source_field": "haproxy_times",
-      "target_field": "haproxy_t0",
+      "target_field": "haproxy_time_clientread",
       "extractor_config": {
         "index": 1,
         "split_by": "/"
@@ -211,7 +211,7 @@
       "condition_value": "/"
     },
     {
-      "title": "Total time in milliseconds spent waiting in the various queues",
+      "title": "Total time in milliseconds spent waiting in the various queues (Tw)",
       "extractor_type": "split_and_index",
       "converters": [
         {
@@ -222,7 +222,7 @@
       "order": 2,
       "cursor_strategy": "copy",
       "source_field": "haproxy_times",
-      "target_field": "haproxy_tw",
+      "target_field": "haproxy_time_wait",
       "extractor_config": {
         "index": 2,
         "split_by": "/"
@@ -231,7 +231,7 @@
       "condition_value": "/"
     },
     {
-      "title": "Total time in milliseconds spent waiting for the connection to establish to the final server, including retries",
+      "title": "Total time in milliseconds spent waiting for the connection to establish to the final server, including retries (Tc)",
       "extractor_type": "split_and_index",
       "converters": [
         {
@@ -242,7 +242,7 @@
       "order": 2,
       "cursor_strategy": "copy",
       "source_field": "haproxy_times",
-      "target_field": "haproxy_tc",
+      "target_field": "haproxy_time_servconn",
       "extractor_config": {
         "index": 3,
         "split_by": "/"
@@ -251,7 +251,7 @@
       "condition_value": "/"
     },
     {
-      "title": "Total time in milliseconds spent waiting for the server to send a full HTTP response, not counting data",
+      "title": "Total time in milliseconds spent waiting for the server to send a full HTTP response, not counting data (Tr)",
       "extractor_type": "split_and_index",
       "converters": [
         {
@@ -262,7 +262,7 @@
       "order": 2,
       "cursor_strategy": "copy",
       "source_field": "haproxy_times",
-      "target_field": "haproxy_tr",
+      "target_field": "haproxy_time_servread",
       "extractor_config": {
         "index": 4,
         "split_by": "/"
@@ -271,7 +271,7 @@
       "condition_value": "/"
     },
     {
-      "title": "Time the request remained active in haproxy, which is the total time in milliseconds elapsed between the first byte of the request was received and the last byte of response was sent",
+      "title": "Time the request remained active in haproxy, which is the total time in milliseconds elapsed between the first byte of the request was received and the last byte of response was sent (Ta)",
       "extractor_type": "split_and_index",
       "converters": [
         {
@@ -282,7 +282,7 @@
       "order": 2,
       "cursor_strategy": "copy",
       "source_field": "haproxy_times",
-      "target_field": "haproxy_ta",
+      "target_field": "haproxy_time_total",
       "extractor_config": {
         "index": 5,
         "split_by": "/"
