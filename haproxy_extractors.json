@@ -202,7 +202,7 @@
       "order": 2,
       "cursor_strategy": "copy",
       "source_field": "haproxy_times",
-      "target_field": "haproxy_tr",
+      "target_field": "haproxy_tc",
       "extractor_config": {
         "index": 1,
         "split_by": "/"
