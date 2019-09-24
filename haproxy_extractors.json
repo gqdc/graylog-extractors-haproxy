@@ -201,7 +201,7 @@
       ],
       "order": 2,
       "cursor_strategy": "copy",
-      "source_field": "haproxy_timings",
+      "source_field": "haproxy_times",
       "target_field": "haproxy_tr",
       "extractor_config": {
         "index": 1,
@@ -221,7 +221,7 @@
       ],
       "order": 2,
       "cursor_strategy": "copy",
-      "source_field": "haproxy_timings",
+      "source_field": "haproxy_times",
       "target_field": "haproxy_tw",
       "extractor_config": {
         "index": 2,
@@ -241,7 +241,7 @@
       ],
       "order": 2,
       "cursor_strategy": "copy",
-      "source_field": "haproxy_timings",
+      "source_field": "haproxy_times",
       "target_field": "haproxy_tc",
       "extractor_config": {
         "index": 3,
@@ -261,7 +261,7 @@
       ],
       "order": 2,
       "cursor_strategy": "copy",
-      "source_field": "haproxy_timings",
+      "source_field": "haproxy_times",
       "target_field": "haproxy_tr",
       "extractor_config": {
         "index": 4,
@@ -281,7 +281,7 @@
       ],
       "order": 2,
       "cursor_strategy": "copy",
-      "source_field": "haproxy_timings",
+      "source_field": "haproxy_times",
       "target_field": "haproxy_ta",
       "extractor_config": {
         "index": 5,
